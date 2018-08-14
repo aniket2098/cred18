@@ -8,11 +8,13 @@ public class Event {
     private String eventName;
     private int eventPrice;
     private boolean eventCheck;
+    private boolean eventEnable;
 
-    public Event(String event, Integer price, boolean check) {
+    public Event(String event, Integer price, boolean check,boolean enable) {
         eventName = event;
         eventPrice = price;
         eventCheck = check;
+        eventEnable=enable;
     }
 
     public String getName() {
@@ -27,6 +29,9 @@ public class Event {
         return eventCheck;
     }
 
+    public boolean getEnable(){
+        return eventEnable;
+    }
 
 
     public void modify(int position,boolean value,ArrayList<Event> events)
