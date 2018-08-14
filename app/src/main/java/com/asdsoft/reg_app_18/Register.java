@@ -131,8 +131,8 @@ public class Register extends AppCompatActivity{
 
 
                 database();
-//                Intent intent = new Intent(Register.this, QRCode.class);
-//                startActivity(intent);
+                Intent intent = new Intent(Register.this, QRCode.class);
+                startActivity(intent);
             }
         });
     }
