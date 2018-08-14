@@ -1,6 +1,7 @@
 package com.asdsoft.reg_app_18;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -49,6 +50,10 @@ public class MainActivity extends AppCompatActivity
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+        SharedPreferences prefs = getSharedPreferences("cllgName", MODE_PRIVATE);
+            int pos = prefs.getInt("cllgName", 0); //0 is the default value.
+            spinner.setSelection(pos);
+
 
 
         final EditText name=findViewById(R.id.name);
@@ -77,8 +82,16 @@ public class MainActivity extends AppCompatActivity
                 {
                     if( Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches())
                     {
-                        if( android.util.Patterns.PHONE.matcher(phone.getText()).matches())         //SEND INFORMATION TO SERVER AFTER THIS
+                        if( android.util.Patterns.PHONE.matcher(phone.getText()).matches()&&
+                                contestantPhone.length()==10 &&
+                                (contestantPhone.charAt(0)=='6' ||
+                                        contestantPhone.charAt(0)=='7' ||
+                                        contestantPhone.charAt(0)=='8' ||
+                                        contestantPhone.charAt(0)=='9'))         //SEND INFORMATION TO SERVER AFTER THIS
                         {
+                            SharedPreferences.Editor editor = getSharedPreferences("cllgName", MODE_PRIVATE).edit();
+                            editor.putInt("cllgName", spinner.getSelectedItemPosition());
+                            editor.apply();
                             Intent intent = new Intent(MainActivity.this, Register.class);
                             intent.putExtra("name",contestantName);
                             intent.putExtra("name2",contestantName2);
@@ -142,7 +155,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }
         else if (id == R.id.bug) {
-
+            Intent intent = new Intent(MainActivity.this, Bug.class);
+            startActivity(intent);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

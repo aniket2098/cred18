@@ -1,13 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="colleges_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Other</item>
+        <item>Select Visiting College</item>
+        <item>Other…</item>
+        <item>AFMC</item>
+        <item>AISSMS</item>
+        <item>AIT</item>
+        <item>BVP</item>
+        <item>BVP LAVALE</item>
+        <item>BVP WOMEN</item>
+        <item>COEP</item>
+        <item>CUMMINS</item>
+        <item>D Y PATIL</item>
+        <item>D Y PATIL PIMPRI</item>
+        <item>DYPSOE</item>
+        <item>F C</item>
+        <item>G H RAISONI WAGHOLI</item>
+        <item>GOVT. POLYTECHNIC</item>
+        <item>IIIT</item>
+        <item>JSPM</item>
+        <item>JSPM, HINJEWADI</item>
+        <item>JSPM, NARHE</item>
+        <item>KEYSTONE</item>
+        <item>KK WAGH NASHIK</item>
+        <item>MIT</item>
+        <item>MIT ALANDI</item>
+        <item>MIT COE</item>
+        <item>MMCC</item>
+        <item>MMCOE</item>
+        <item>MODERN COLLEGE</item>
+        <item>MOZE, BALEWADI</item>
+        <item>PCCOE</item>
+        <item>PICT</item>
+        <item>PVG</item>
+        <item>RMD SINHGAD</item>
+        <item>SCOE</item>
+        <item>SINHGAD NBM</item>
+        <item>SINHGAD SKN</item>
+        <item>SINHGAD VADGAON</item>
+        <item>SIT KONDHWA</item>
+        <item>SIT LONAVALA</item>
+        <item>SIT NARHE</item>
+        <item>SIT WADGAON</item>
+        <item>SKN</item>
+        <item>SKN NIT</item>
+        <item>SYMBIOSIS</item>
+        <item>TRINITY</item>
+        <item>TSSM BSCOER</item>
+        <item>VIIT</item>
+        <item>VIT</item>
+        <item>VPCOE BARAMATI</item>
+        <item>WADIA'S</item>
+        <item>WALCHAND SANGLI</item>
+        <item>WIT SOLAPUR</item>
+        <item>ZEAL</item>
     </string-array>
 </resources>
