@@ -31,10 +31,6 @@ public class ServerData {
     public int Xodia;
     public int Workshop;
 
-    ServerData()
 
-    {
-
-    }
 }
 
