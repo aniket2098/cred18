@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class Register extends AppCompatActivity{
     View view;
     PrevData prevData;
     public ArrayList<Event> receipt=new ArrayList<>();
+    Bundle bundle;
 
 
     private ArrayList<Event> event;
@@ -81,6 +83,7 @@ public class Register extends AppCompatActivity{
                 textView = viewHolder.price;
                 textView.setText(String.valueOf(register.getPrice()));
                 final CheckBox checkBox=viewHolder.box;
+                checkBox.setEnabled(event.get(position).getEnable());
                 checkBox.setChecked(event.get(position).getCheck());
                 viewHolder.box.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -137,35 +140,102 @@ public class Register extends AppCompatActivity{
         });
     }
 
-    public static ArrayList<Event> createContactsList() {
+    public ArrayList<Event> createContactsList() {
         ArrayList<Event> events = new ArrayList<>();
-
+        bundle=getIntent().getExtras();
         events.clear();
-        events.add(new Event("B-Plan",10,false));
-        events.add(new Event("Contraption",20,false));
-        events.add(new Event("Clash",30,false));
-        events.add(new Event("Cretronix",40,false));
-        events.add(new Event("Croodle",50,false));
-        events.add(new Event("MAD Talks",60,false));
-        events.add(new Event("NTH",70,false));
-        events.add(new Event("Paper\nPresentation",80,false));
-        events.add(new Event("Pixelate",90,false));
-        events.add(new Event("Roboliga",100,false));
-        events.add(new Event("Reverse\nCoding",120,false));
-        events.add(new Event("Quiz",130,false));
-        events.add(new Event("Software\nDevelopment",140,false));
-        events.add(new Event("Seminars",150,false));
-        events.add(new Event("Web Weaver",160,false));
-        events.add(new Event("Wall Street",170,false));
-        events.add(new Event("Xodia",180,false));
-        events.add(new Event("Workshop",190,false));
+        Log.i("bool11", Boolean.toString(bundle.getString("name2","NULL").isEmpty()));
+       if(bundle.getString("name2","NULL").isEmpty()) {
+           events.add(new Event("B-Plan", 10, false,true));
+           events.add(new Event("Contraption", 20, false,true));
+           events.add(new Event("Clash", 30, false,true));
+           events.add(new Event("Cretronix", 40, false,true));
+           events.add(new Event("Croodle", 50, false,true));
+           events.add(new Event("MAD Talks", 60, false,true));
+           events.add(new Event("NTH", 70, false,true));
+           events.add(new Event("Paper\nPresentation", 80, false,true));
+           events.add(new Event("Pixelate", 90, false,true));
+           events.add(new Event("Roboliga", 100, false,true));
+           events.add(new Event("Reverse\nCoding", 120, false,true));
+           events.add(new Event("Quiz", 130, false,true));
+           events.add(new Event("Software\nDevelopment", 140, false,true));
+           events.add(new Event("Seminars", 150, false,true));
+           events.add(new Event("Web Weaver", 160, false,true));
+           events.add(new Event("Wall Street", 170, false,true));
+           events.add(new Event("Xodia", 180, false,true));
+           events.add(new Event("Workshop", 190, false,true));
+       }
+        else if(bundle.getString("name3","NULL").isEmpty())
+        {
+            events.add(new Event("B-Plan", 10, false,true));
+            events.add(new Event("Contraption", 20, false,true));
+            events.add(new Event("Clash", 30, false,true));
+            events.add(new Event("Cretronix", 40, false,true));
+            events.add(new Event("Croodle", 50, false,true));
+            events.add(new Event("MAD Talks", 60, false,true));
+            events.add(new Event("NTH", 70, false,false));
+            events.add(new Event("Paper\nPresentation", 80, false,true));
+            events.add(new Event("Pixelate", 90, false,true));
+            events.add(new Event("Roboliga", 100, false,true));
+            events.add(new Event("Reverse\nCoding", 120, false,true));
+            events.add(new Event("Quiz", 130, false,true));
+            events.add(new Event("Software\nDevelopment", 140, false,true));
+            events.add(new Event("Seminars", 150, false,false));
+            events.add(new Event("Web Weaver", 160, false,true));
+            events.add(new Event("Wall Street", 170, false,false));
+            events.add(new Event("Xodia", 180, false,false));
+            events.add(new Event("Workshop", 190, false,false));
+
+        }
+        else if(bundle.getString("name4","NULL").isEmpty())
+        {
+            events.add(new Event("B-Plan", 10, false,true));
+            events.add(new Event("Contraption", 20, false,true));
+            events.add(new Event("Clash", 30, false,false));
+            events.add(new Event("Cretronix", 40, false,true));
+            events.add(new Event("Croodle", 50, false,false));
+            events.add(new Event("MAD Talks", 60, false,true));
+            events.add(new Event("NTH", 70, false,false));
+            events.add(new Event("Paper\nPresentation", 80, false,true));
+            events.add(new Event("Pixelate", 90, false,false));
+            events.add(new Event("Roboliga", 100, false,true));
+            events.add(new Event("Reverse\nCoding", 120, false,false));
+            events.add(new Event("Quiz", 130, false,false));
+            events.add(new Event("Software\nDevelopment", 140, false,true));
+            events.add(new Event("Seminars", 150, false,false));
+            events.add(new Event("Web Weaver", 160, false,true));
+            events.add(new Event("Wall Street", 170, false,false));
+            events.add(new Event("Xodia", 180, false,false));
+            events.add(new Event("Workshop", 190, false,false));
+        }
+        else
+        {
+            events.add(new Event("B-Plan", 10, false,false));
+            events.add(new Event("Contraption", 20, false,true));
+            events.add(new Event("Clash", 30, false,false));
+            events.add(new Event("Cretronix", 40, false,true));
+            events.add(new Event("Croodle", 50, false,false));
+            events.add(new Event("MAD Talks", 60, false,false));
+            events.add(new Event("NTH", 70, false,false));
+            events.add(new Event("Paper\nPresentation", 80, false,false));
+            events.add(new Event("Pixelate", 90, false,false));
+            events.add(new Event("Roboliga", 100, false,false));
+            events.add(new Event("Reverse\nCoding", 120, false,false));
+            events.add(new Event("Quiz", 130, false,false));
+            events.add(new Event("Software\nDevelopment", 140, false,false));
+            events.add(new Event("Seminars", 150, false,false));
+            events.add(new Event("Web Weaver", 160, false,false));
+            events.add(new Event("Wall Street", 170, false,false));
+            events.add(new Event("Xodia", 180, false,false));
+            events.add(new Event("Workshop", 190, false,false));
+        }
         return events;
     }
 
     public void database()
     {
+        bundle=getIntent().getExtras();
         SQLiteDatabase sqLiteDatabase=openOrCreateDatabase("previousData",MODE_PRIVATE,null);
-        Bundle bundle = getIntent().getExtras();
         Date c=Calendar.getInstance().getTime();
         SimpleDateFormat d=new SimpleDateFormat("dd-MM-yyyy");
         prevData=new PrevData(bundle.getString("name"),bundle.getString("name2"),bundle.getString("name3"),bundle.getString("name4"),bundle.getString("phone"),bundle.getString("email"),bundle.getString("phone"),total,receipt.size(),d.format(c),bundle.getString("college"),event);
