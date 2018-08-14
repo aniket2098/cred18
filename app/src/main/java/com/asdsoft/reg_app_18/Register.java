@@ -87,7 +87,7 @@ public class Register extends AppCompatActivity{
                     public void onClick(View view) {
                         int pos = viewHolder.getAdapterPosition();
                         if(checkBox.isChecked()){
-//                            Log.i("remove", events.get(position).getName());
+//                            Log.i("remove", events.get(position).getName())
 
                             receipt.add(event.get(position));
                             event.get(position).modify(position,true,event);
@@ -130,8 +130,9 @@ public class Register extends AppCompatActivity{
             public void onClick(View view) {
 
 
-                database();
+                String unikey = database();
                 Intent intent = new Intent(Register.this, QRCode.class);
+                intent.putExtra("unikey", unikey);
                 startActivity(intent);
             }
         });
@@ -162,7 +163,7 @@ public class Register extends AppCompatActivity{
         return events;
     }
 
-    public void database()
+    public String database()
     {
         SQLiteDatabase sqLiteDatabase=openOrCreateDatabase("previousData",MODE_PRIVATE,null);
         Bundle bundle = getIntent().getExtras();
@@ -170,6 +171,7 @@ public class Register extends AppCompatActivity{
         SimpleDateFormat d=new SimpleDateFormat("dd-MM-yyyy");
         prevData=new PrevData(bundle.getString("name"),bundle.getString("name2"),bundle.getString("name3"),bundle.getString("name4"),bundle.getString("phone"),bundle.getString("email"),bundle.getString("phone"),total,receipt.size(),d.format(c),bundle.getString("college"),event);
         Database database=new Database(prevData, sqLiteDatabase);
+        return database.uni;
     }
     @Override
     public void onBackPressed() {
