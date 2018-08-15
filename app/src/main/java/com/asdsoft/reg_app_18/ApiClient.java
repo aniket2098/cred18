@@ -29,7 +29,7 @@ public interface ApiClient {
                                 @Field("MADTalks") int MADTalks,
                                 @Field("NTH") int NTH,
                                 @Field("paperPresentation") int paperPresentation,
-                                @Field("Croodle") int Pixelate,
+                                @Field("Pixelate") int Pixelate,
                                 @Field("Roboliga") int Roboliga,
                                 @Field("Reverse_Coding") int Reverse_Coding,
                                 @Field("Quiz") int Quiz,
