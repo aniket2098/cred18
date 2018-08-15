@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -55,7 +56,20 @@ public class    MainActivity extends AppCompatActivity
             int pos = prefs.getInt("cllgName", 0); //0 is the default value.
             spinner.setSelection(pos);
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+//                String selectedItem = parent.getItemAtPosition(position).toString(); //this is your selected item
+                if(spinner.getSelectedItem().toString().equals("Other…"))
+                    findViewById(R.id.other).setVisibility(View.VISIBLE);
+                else
+                    findViewById(R.id.other).setVisibility(View.GONE);
+            }
+            public void onNothingSelected(AdapterView<?> parent)
+            {
 
+            }
+        });
 
         final EditText name=findViewById(R.id.name);
         final EditText name2=findViewById(R.id.name2);
@@ -66,7 +80,6 @@ public class    MainActivity extends AppCompatActivity
         final EditText phone=findViewById(R.id.ph_no);
         final EditText college=findViewById(R.id.name4);
         final CheckBox checkBox=findViewById(R.id.ieee);
-
         Button button=findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {              //BUTTON ON-CLICK
             @Override
@@ -77,7 +90,16 @@ public class    MainActivity extends AppCompatActivity
                 final String contestantName2=name2.getText().toString().trim();
                 final String contestantName3=name3.getText().toString().trim();
                 final String contestantName4=name4.getText().toString().trim();
-                final String contestantCollege=spinner.getSelectedItem().toString();
+                String tempString=null;
+                if(spinner.getSelectedItem().toString().equals("Other…"))
+                {
+                    tempString=((EditText)findViewById(R.id.other)).getText().toString();;
+                }
+                else
+                {
+                    tempString=spinner.getSelectedItem().toString();
+                }
+                final String contestantCollege=tempString;
                 final Boolean ieeeMember=checkBox.isChecked();
                 if(!TextUtils.isEmpty(contestantName)&&
                         !TextUtils.isEmpty(contestantEmail)&&
