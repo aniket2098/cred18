@@ -19,6 +19,7 @@ public class LoginAct extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser != null){
+
             Intent intent = new Intent(LoginAct.this, MainActivity.class);
             startActivity(intent);
             finish();

@@ -19,6 +19,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,7 +44,7 @@ public class Register extends AppCompatActivity{
     Bundle bundle;
     String UNI;
     ProgressBar progressBar;
-
+    private FirebaseUser firebaseUser;
     private ArrayList<Event> event;
 
     @Override
@@ -285,9 +288,12 @@ register.setEnabled(false);
                 .baseUrl(ApiClient.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
                 .build();
-
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         ApiClient api = retrofit.create(ApiClient.class);
-        Call<List<DataRecv>> call = api.sendData(serverData.name,
+        String gname = "test";
+        Call<List<DataRecv>> call = api.sendData(firebaseUser.getPhoneNumber(),
+                                                gname,
+                                                serverData.name,
                                                 serverData.name2,
                                                 serverData.name3,
                                                 serverData.name3,
