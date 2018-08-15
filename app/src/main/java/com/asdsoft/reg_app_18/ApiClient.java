@@ -21,6 +21,7 @@ public interface ApiClient {
                                 @Field("date") String date,
                                 @Field("total") int total,
                                 @Field("college") String college,
+                                @Field("ieee") Boolean ieee,
                                 @Field("BPlan") int BPlan,
                                 @Field("Contraption") int Contraption,
                                 @Field("Clash") int Clash,

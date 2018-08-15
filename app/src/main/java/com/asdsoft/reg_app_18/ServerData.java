@@ -12,6 +12,7 @@ public class ServerData {
     public int noOfEvents;
     public String uniId;
     public String college;
+    public Boolean ieee;
     public int BPlan;
     public int Contraption;
     public int Clash;

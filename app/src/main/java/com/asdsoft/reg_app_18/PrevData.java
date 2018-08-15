@@ -15,6 +15,7 @@ public class PrevData {
     private int noOfEvents;
     private String uniId;
     private String college;
+    private Boolean ieee;
     private ArrayList<Event> receipt;
 
 
@@ -68,6 +69,12 @@ public class PrevData {
         return total;
     }
 
+    public Boolean getIeee()
+    {
+        return ieee;
+    }
+
+
     public ArrayList<Event> getReceipt()
     {
         return receipt;
@@ -84,6 +91,7 @@ public class PrevData {
              int tot, int no,
              String prevDate,
              String cllg,
+             Boolean Ieee,
              ArrayList<Event> receipt1)
     {
         name=nameOfPerson;
@@ -98,6 +106,7 @@ public class PrevData {
         date=prevDate;
         college=cllg;
         receipt=receipt1;
+        ieee=Ieee;
     }
 
 }

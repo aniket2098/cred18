@@ -109,6 +109,7 @@ public class Database {
         serverdata.phone=prevData.getRegPhone();
         serverdata.date=prevData.getRegDate();
         serverdata.total=prevData.gettotal();
+        serverdata.ieee=prevData.getIeee();
         serverdata.noOfEvents=prevData.getNoOfEvents();
         serverdata.uniId=prevData.getUniId();
         serverdata.college=prevData.getRegCollege();

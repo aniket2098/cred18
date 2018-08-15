@@ -43,7 +43,7 @@ public class Prev extends AppCompatActivity {
                             cursor.getInt(cursor.getColumnIndex("total_events")),
                             cursor.getString(cursor.getColumnIndex("date")),
                             cursor.getString(cursor.getColumnIndex("college")),
-                            null);
+                            null,null);
                     registrations.add(prevData);
                 }while(cursor.moveToNext());
             }

@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -64,6 +65,7 @@ public class    MainActivity extends AppCompatActivity
         final EditText email=findViewById(R.id.email);
         final EditText phone=findViewById(R.id.ph_no);
         final EditText college=findViewById(R.id.name4);
+        final CheckBox checkBox=findViewById(R.id.ieee);
 
         Button button=findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {              //BUTTON ON-CLICK
@@ -76,6 +78,7 @@ public class    MainActivity extends AppCompatActivity
                 final String contestantName3=name3.getText().toString().trim();
                 final String contestantName4=name4.getText().toString().trim();
                 final String contestantCollege=spinner.getSelectedItem().toString();
+                final Boolean ieeeMember=checkBox.isChecked();
                 if(!TextUtils.isEmpty(contestantName)&&
                         !TextUtils.isEmpty(contestantEmail)&&
                         !TextUtils.isEmpty(contestantPhone))
@@ -100,6 +103,7 @@ public class    MainActivity extends AppCompatActivity
                             intent.putExtra("email",contestantEmail);
                             intent.putExtra("phone",contestantPhone);
                             intent.putExtra("college",contestantCollege);
+                            intent.putExtra("ieee",ieeeMember);
                             startActivity(intent);
                             finish();
                         }

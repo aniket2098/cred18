@@ -160,7 +160,7 @@ register.setEnabled(false);
         ArrayList<Event> events = new ArrayList<>();
         ArrayList<Integer> price=new ArrayList<>();
         bundle=getIntent().getExtras();
-        if(true)
+        if(!bundle.getBoolean("ieee"))
         {
             price.add(150);
             price.add(200);
@@ -181,7 +181,27 @@ register.setEnabled(false);
             price.add(0);
             price.add(0);
         }
-
+        else
+        {
+            price.add(120);
+            price.add(160);
+            price.add(80);
+            price.add(120);
+            price.add(80);
+            price.add(40);
+            price.add(0);
+            price.add(180);
+            price.add(120);
+            price.add(160);
+            price.add(80);
+            price.add(40);
+            price.add(160);
+            price.add(0);
+            price.add(120);
+            price.add(40);
+            price.add(0);
+            price.add(0);
+        }
 
 
 
@@ -272,7 +292,7 @@ register.setEnabled(false);
         SQLiteDatabase sqLiteDatabase=openOrCreateDatabase("previousData",MODE_PRIVATE,null);
         Date c=Calendar.getInstance().getTime();
         SimpleDateFormat d=new SimpleDateFormat("dd-MM-yyyy");
-        prevData=new PrevData(bundle.getString("name"),bundle.getString("name2"),bundle.getString("name3"),bundle.getString("name4"),bundle.getString("phone"),bundle.getString("email"),bundle.getString("phone"),total,receipt.size(),d.format(c),bundle.getString("college"),event);
+        prevData=new PrevData(bundle.getString("name"),bundle.getString("name2"),bundle.getString("name3"),bundle.getString("name4"),bundle.getString("phone"),bundle.getString("email"),bundle.getString("phone"),total,receipt.size(),d.format(c),bundle.getString("college"),bundle.getBoolean("ieee"),event);
         Database database=new Database(prevData, sqLiteDatabase);
         makeRequest(database.getServeData());
     }
@@ -296,6 +316,7 @@ register.setEnabled(false);
                                                 serverData.date,
                                                 serverData.total,
                                                 serverData.college,
+                                                serverData.ieee,
                                                 serverData.BPlan,
                                                 serverData.Contraption,
                                                 serverData.Clash,

@@ -18,11 +18,11 @@ public class LoginAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(firebaseUser != null){
+//        if(firebaseUser != null){
             Intent intent = new Intent(LoginAct.this, MainActivity.class);
             startActivity(intent);
             finish();
-        }
+//        }
         editTextMobile = findViewById(R.id.editTextMobile);
 
         findViewById(R.id.buttonContinue).setOnClickListener(new View.OnClickListener() {
