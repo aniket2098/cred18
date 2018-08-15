@@ -26,6 +26,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     //The edittext to input the code
     private EditText editTextCode;
 
+
     //firebase auth object
     private FirebaseAuth mAuth;
     @Override
@@ -117,7 +118,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             //verification successful we will start the profile activity
 
-                            Intent intent = new Intent(VerifyPhoneActivity.this, MainActivity.class);
+                            Intent intent = new Intent(VerifyPhoneActivity.this, Wait.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
@@ -130,14 +131,6 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                                 message = "Invalid code entered...";
                             }
 
-//                            Snackbar snackbar = Snackbar.make(findViewById(R.id.parent), message, Snackbar.LENGTH_LONG);
-//                            snackbar.setAction("Dismiss", new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//
-//                                }
-//                            });
-//                            snackbar.show();
                         }
                     }
                 });

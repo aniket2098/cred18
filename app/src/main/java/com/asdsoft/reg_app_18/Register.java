@@ -46,13 +46,15 @@ public class Register extends AppCompatActivity{
     ProgressBar progressBar;
     private FirebaseUser firebaseUser;
     private ArrayList<Event> event;
+    public String gname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         progressBar = findViewById(R.id.progressbar);
-
+        Intent i = getIntent();
+        gname = i.getStringExtra("gname");
         class RegisterAdapter extends
                 RecyclerView.Adapter<RegisterAdapter.ViewHolder> {
 
@@ -308,7 +310,7 @@ register.setEnabled(false);
                 .build();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         ApiClient api = retrofit.create(ApiClient.class);
-        String gname = "test";
+
         Call<List<DataRecv>> call = api.sendData("7588245434",
                                                 gname,
                                                 serverData.name,
@@ -320,7 +322,7 @@ register.setEnabled(false);
                                                 serverData.date,
                                                 serverData.total,
                                                 serverData.college,
-                                                serverData.ieee,
+                                                serverData.ieee?1:0,
                                                 serverData.BPlan,
                                                 serverData.Contraption,
                                                 serverData.Clash,

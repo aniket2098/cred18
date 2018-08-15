@@ -8,12 +8,13 @@
 
     <LinearLayout android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:orientation="horizontal">
-    <TextView android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="ASK SENIOR TO ACTIVATE">
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ASK SENIOR TO ACTIVATE"/>
 
-    </TextView>
+
         <Button
             android:layout_width="match_parent"
             android:id="@+id/click"

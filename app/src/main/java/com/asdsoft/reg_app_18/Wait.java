@@ -44,15 +44,19 @@ public class Wait extends AppCompatActivity {
             public void onResponse(Call<List<DataRecv>> call, Response<List<DataRecv>> response) {
                 List<DataRecv> out = response.body();
                 DataRecv d = out.get(0);
+                Log.e("TAG", String.valueOf(d.RES));
                 if(d.RES == 200){
                     startA(d.gname);
+                }
+                else {
+                    Toast.makeText(Wait.this,"NOT ADDED" ,Toast.LENGTH_LONG).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<List<DataRecv>> call, Throwable t) {
-                Toast.makeText(Wait.this,"CHECK YOUR INTERNET",Toast.LENGTH_LONG).show();
+                Toast.makeText(Wait.this,"CHECK YOUR INTERNET" + t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
     }
