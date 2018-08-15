@@ -320,7 +320,7 @@ register.setEnabled(false);
                                                 serverData.date,
                                                 serverData.total,
                                                 serverData.college,
-//                                                serverData.ieee,
+                                                serverData.ieee,
                                                 serverData.BPlan,
                                                 serverData.Contraption,
                                                 serverData.Clash,
