@@ -1,8 +1,11 @@
 package com.asdsoft.reg_app_18;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.List;
@@ -12,6 +15,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.google.android.gms.flags.impl.SharedPreferencesFactory.getSharedPreferences;
 
 public class Database {
 
@@ -35,7 +41,7 @@ public class Database {
     public String uni;
     SQLiteDatabase sqLiteDatabase;
     ServerData serverdata;
-
+    public static final String MY_PREFS_NAME = "MyPrefsFile";
 
     Database(PrevData prevData, SQLiteDatabase sqLiteDatabase)
     {
@@ -74,6 +80,9 @@ public class Database {
         contentValues.put(NO,prevData.getNoOfEvents());
         contentValues.put(ID,prevData.getUniId());
         contentValues.put(COLLEGE, prevData.getRegCollege());
+        contentValues.put(UNIKEY, "CRED18");
+        sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
+        contentValues.clear();
 
 
         for(int i=0;i<prevData.getReceipt().size();i++)
@@ -88,7 +97,7 @@ public class Database {
         }
 
 
-
+        sqLiteDatabase.close();
         serverdata=new ServerData();
         serverdata.name=prevData.getRegName();
         serverdata.name2=prevData.getRegName2();
@@ -119,39 +128,16 @@ public class Database {
         serverdata.WallStreet=prevData.getReceipt().get(15).getCheck() ? 1:0;
         serverdata.Xodia=prevData.getReceipt().get(16).getCheck() ? 1:0;
         serverdata.Workshop=prevData.getReceipt().get(16).getCheck() ? 1:0;
-        uni = makeRequst(serverdata);
-        contentValues.put(UNIKEY, uni);
-        sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
-        contentValues.clear();
-        sqLiteDatabase.close();
+
+
+
+
 
     }
-    String makeRequst(ServerData serverData){
-        final String[] output = new String[1];
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ApiClient.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
-                .build();
+    public ServerData getServeData(){
+        return serverdata;
+    }
+    void makeRequst(ServerData serverData){
 
-        ApiClient api = retrofit.create(ApiClient.class);
-        Call<List<DataRecv>> call = api.sendData(serverData.email,serverData.phone);
-
-        call.enqueue(new Callback<List<DataRecv>>() {
-            @Override
-            public void onResponse(Call<List<DataRecv>> call, Response<List<DataRecv>> response) {
-                List<DataRecv> out = response.body();
-                DataRecv d = out.get(0);
-                output[0] = d.uniKey;
-            }
-
-            @Override
-            public void onFailure(Call<List<DataRecv>> call, Throwable t) {
-
-                output[0] = "NEG";
-            }
-        });
-
-
-        return output[0];
     }
 }

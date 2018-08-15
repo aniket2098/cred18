@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
@@ -28,10 +29,11 @@ public class QRCode extends AppCompatActivity {
         setContentView(R.layout.activity_qrcode);
         Intent intent = getIntent();
         unikey = intent.getStringExtra(unikey);
-        Toast.makeText(QRCode.this,unikey,Toast.LENGTH_SHORT).show();
+        TextView key = findViewById(R.id.key);
+        key.setText(unikey);
         imageView = findViewById(R.id.qrCode);
         try {
-            bitmap = TextToImageEncode("HELLO");
+            bitmap = TextToImageEncode(unikey);
             imageView.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();

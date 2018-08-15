@@ -3,6 +3,7 @@ package com.asdsoft.reg_app_18;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,11 +16,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Register extends AppCompatActivity{
     ArrayList<Event> events;
@@ -29,7 +38,7 @@ public class Register extends AppCompatActivity{
     PrevData prevData;
     public ArrayList<Event> receipt=new ArrayList<>();
     Bundle bundle;
-
+    String UNI;
 
     private ArrayList<Event> event;
 
@@ -131,12 +140,23 @@ public class Register extends AppCompatActivity{
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String wrong = "NEG";
+                SharedPreferences pref = getSharedPreferences("MyPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("UNI",wrong);
+                editor.apply();
+                SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
+                String value = prefs.getString("UNI", "NND");
+                database();
 
-
-                String unikey = database();
-                Intent intent = new Intent(Register.this, QRCode.class);
-                intent.putExtra("unikey", unikey);
-                startActivity(intent);
+                while (true) {
+                    if (value != wrong) {
+                        Intent intent = new Intent(Register.this, QRCode.class);
+                        intent.putExtra("unikey", value);
+                        //Toast.makeText(getApplicationContext(),val,Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+                    }
+                }
             }
         });
     }
@@ -233,7 +253,7 @@ public class Register extends AppCompatActivity{
         return events;
     }
 
-    public String database()
+    public void database()
     {
         bundle=getIntent().getExtras();
         SQLiteDatabase sqLiteDatabase=openOrCreateDatabase("previousData",MODE_PRIVATE,null);
@@ -241,10 +261,44 @@ public class Register extends AppCompatActivity{
         SimpleDateFormat d=new SimpleDateFormat("dd-MM-yyyy");
         prevData=new PrevData(bundle.getString("name"),bundle.getString("name2"),bundle.getString("name3"),bundle.getString("name4"),bundle.getString("phone"),bundle.getString("email"),bundle.getString("phone"),total,receipt.size(),d.format(c),bundle.getString("college"),event);
         Database database=new Database(prevData, sqLiteDatabase);
-        return database.uni;
+        makeRequest(database.getServeData());
     }
     @Override
     public void onBackPressed() {
     }
+    public void makeRequest(ServerData serverData){
+        final String[] output = new String[1];
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+                .build();
 
+        ApiClient api = retrofit.create(ApiClient.class);
+        Call<List<DataRecv>> call = api.sendData(serverData.email,serverData.phone);
+        SharedPreferences pref = getSharedPreferences("MyPref", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = pref.edit();
+        call.enqueue(new Callback<List<DataRecv>>() {
+            @Override
+            public void onResponse(Call<List<DataRecv>> call, Response<List<DataRecv>> response) {
+                List<DataRecv> out = response.body();
+                DataRecv d = out.get(0);
+
+                output[0] = d.uniKey;
+
+                editor.putString("UNI", d.uniKey);
+                editor.apply();
+                Log.e("TAG",d.uniKey);
+            }
+
+            @Override
+            public void onFailure(Call<List<DataRecv>> call, Throwable t) {
+
+                output[0] = "NEG";
+                editor.putString("UNI", "BAD");
+                editor.apply();
+            }
+        });
+
+
+    }
 }
