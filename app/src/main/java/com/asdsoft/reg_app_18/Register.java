@@ -290,7 +290,7 @@ register.setEnabled(false);
         Call<List<DataRecv>> call = api.sendData(serverData.name,
                                                 serverData.name2,
                                                 serverData.name3,
-                                                serverData.name4,
+                                                serverData.name3,
                                                 serverData.email,
                                                 serverData.phone,
                                                 serverData.date,
