@@ -311,7 +311,7 @@ register.setEnabled(false);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         ApiClient api = retrofit.create(ApiClient.class);
 
-        Call<List<DataRecv>> call = api.sendData("7588245434",
+        Call<List<DataRecv>> call = api.sendData(firebaseUser.getPhoneNumber(),
                                                 gname,
                                                 serverData.name,
                                                 serverData.name2,
