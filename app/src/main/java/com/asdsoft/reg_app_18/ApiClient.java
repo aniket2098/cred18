@@ -10,7 +10,7 @@ public interface ApiClient {
     public static final String BASE_URL = "http://webone.tk/regapp/";
 
     @FormUrlEncoded
-    @POST("restapi.php")
+    @POST("test.php")
     Call<List<DataRecv>> sendData(
                                 @Field("name1") String name,
                                 @Field("name2") String name2,
@@ -25,18 +25,16 @@ public interface ApiClient {
                                 @Field("Contraption") int Contraption,
                                 @Field("Clash") int Clash,
                                 @Field("Cretronix") int Cretronix,
-                                @Field("Croodle") int Croodle,
-                                @Field("MADTalks") int MADTalks,
+                                @Field("Datawiz") int Datawiz,
+                                @Field("Enigma") int Enigma,
                                 @Field("NTH") int NTH,
                                 @Field("paperPresentation") int paperPresentation,
-                                @Field("Croodle") int Pixelate,
+                                @Field("Pixelate") int Pixelate,
                                 @Field("Roboliga") int Roboliga,
                                 @Field("Reverse_Coding") int Reverse_Coding,
                                 @Field("Quiz") int Quiz,
                                 @Field("Software_Development") int Software_Development,
-                                @Field("Seminars") int Seminars,
                                 @Field("WebWeaver") int WebWeaver,
                                 @Field("WallStreet") int WallStreet,
-                                @Field("Xodia") int Xodia,
-                                @Field("Workshop") int Workshop);
+                                @Field("Xodia") int Xodia);
 }

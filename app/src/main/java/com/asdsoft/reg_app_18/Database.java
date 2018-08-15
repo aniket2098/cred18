@@ -3,6 +3,7 @@ package com.asdsoft.reg_app_18;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -58,11 +59,11 @@ public class Database {
                 + NO + " integer"  + ","
                 + COLLEGE + " varchar(30)" + ","
                 + UNIKEY +  " varchar(40)" + ","
-                + ID + " varchar(30)" + " primary key" +
+                + ID + " integer" + " primary key autoincrement not null" +
                 ");" );
 
         sqLiteDatabase.execSQL("create table if not exists " + "EVENTS" + "("
-                + UID + " varchar(30)" + ","
+                + UID + " integer" + ","
                 + EVENT + " varchar(20), foreign key (" + UID + ") references " + TABLE_NAME + "(" + ID + ")"
                 + ");");
 
@@ -78,24 +79,25 @@ public class Database {
         contentValues.put(DATE,prevData.getRegDate());
         contentValues.put(TOTAL,prevData.gettotal());
         contentValues.put(NO,prevData.getNoOfEvents());
-        contentValues.put(ID,prevData.getUniId());
+//        contentValues.put(ID,prevData.getUniId());
         contentValues.put(COLLEGE, prevData.getRegCollege());
         contentValues.put(UNIKEY, "CRED18");
         sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
         contentValues.clear();
 
-
+        Cursor cursor=sqLiteDatabase.rawQuery("select unique_id from prev_reg",null);
+        cursor.moveToLast();
         for(int i=0;i<prevData.getReceipt().size();i++)
         {
 //            Log.i("bool", Boolean.toString(prevData.getReceipt().get(i).getCheck()));
             if(prevData.getReceipt().get(i).getCheck()) {
-                contentValues.put(UID, prevData.getUniId());
+                contentValues.put(UID, cursor.getString(cursor.getColumnIndex("unique_id")));
                 contentValues.put(EVENT, prevData.getReceipt().get(i).getName());
                 sqLiteDatabase.insert("EVENTS",null,contentValues);
             }
 
         }
-
+    cursor.close();
 
         sqLiteDatabase.close();
         serverdata=new ServerData();
@@ -114,8 +116,8 @@ public class Database {
         serverdata.Contraption=prevData.getReceipt().get(1).getCheck() ? 1:0;
         serverdata.Clash=prevData.getReceipt().get(2).getCheck() ? 1:0;
         serverdata.Cretronix=prevData.getReceipt().get(3).getCheck() ? 1:0;
-        serverdata.Croodle=prevData.getReceipt().get(4).getCheck() ? 1:0;
-        serverdata.MADTalks=prevData.getReceipt().get(5).getCheck() ? 1:0;
+        serverdata.Datawiz=prevData.getReceipt().get(4).getCheck() ? 1:0;
+        serverdata.Enigma=prevData.getReceipt().get(5).getCheck() ? 1:0;
         serverdata.NTH=prevData.getReceipt().get(6).getCheck() ? 1:0;
         serverdata.paperPresentation=prevData.getReceipt().get(7).getCheck() ? 1:0;
         serverdata.Pixelate=prevData.getReceipt().get(8).getCheck() ? 1:0;
@@ -123,11 +125,9 @@ public class Database {
         serverdata.Reverse_Coding=prevData.getReceipt().get(10).getCheck() ? 1:0;
         serverdata.Quiz=prevData.getReceipt().get(11).getCheck() ? 1:0;
         serverdata.Software_Development=prevData.getReceipt().get(12).getCheck() ? 1:0;
-        serverdata.Seminars=prevData.getReceipt().get(13).getCheck() ? 1:0;
-        serverdata.WebWeaver=prevData.getReceipt().get(14).getCheck() ? 1:0;
-        serverdata.WallStreet=prevData.getReceipt().get(15).getCheck() ? 1:0;
-        serverdata.Xodia=prevData.getReceipt().get(16).getCheck() ? 1:0;
-        serverdata.Workshop=prevData.getReceipt().get(16).getCheck() ? 1:0;
+        serverdata.WebWeaver=prevData.getReceipt().get(13).getCheck() ? 1:0;
+        serverdata.WallStreet=prevData.getReceipt().get(14).getCheck() ? 1:0;
+        serverdata.Xodia=prevData.getReceipt().get(15).getCheck() ? 1:0;
 
 
     }

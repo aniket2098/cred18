@@ -16,8 +16,8 @@ public class ServerData {
     public int Contraption;
     public int Clash;
     public int Cretronix;
-    public int Croodle;
-    public int MADTalks;
+    public int Datawiz;
+    public int Enigma;
     public int NTH  ;
     public int paperPresentation;
     public int Pixelate;
@@ -25,11 +25,9 @@ public class ServerData {
     public int Reverse_Coding;
     public int Quiz;
     public int Software_Development;
-    public int Seminars;
     public int WebWeaver;
     public int WallStreet;
     public int Xodia;
-    public int Workshop;
 
 
 }

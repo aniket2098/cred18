@@ -137,12 +137,12 @@ public class Register extends AppCompatActivity{
         rvContacts.setAdapter(adapter);
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
 
-        Button register = findViewById(R.id.registerButton);
+        final Button register = findViewById(R.id.registerButton);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+register.setEnabled(false);
 
                 progressBar.setVisibility(View.VISIBLE);
                 database();
@@ -158,92 +158,110 @@ public class Register extends AppCompatActivity{
 
     public ArrayList<Event> createContactsList() {
         ArrayList<Event> events = new ArrayList<>();
+        ArrayList<Integer> price=new ArrayList<>();
         bundle=getIntent().getExtras();
+        if(true)
+        {
+            price.add(150);
+            price.add(200);
+            price.add(100);
+            price.add(150);
+            price.add(100);
+            price.add(50);
+            price.add(0);
+            price.add(200);
+            price.add(150);
+            price.add(200);
+            price.add(100);
+            price.add(40);
+            price.add(200);
+            price.add(0);
+            price.add(150);
+            price.add(50);
+            price.add(0);
+            price.add(0);
+        }
+
+
+
+
+
         events.clear();
         Log.i("bool11", Boolean.toString(bundle.getString("name2","NULL").isEmpty()));
        if(bundle.getString("name2","NULL").isEmpty()) {
-           events.add(new Event("B-Plan", 10, false,true));
-           events.add(new Event("Contraption", 20, false,true));
-           events.add(new Event("Clash", 30, false,true));
-           events.add(new Event("Cretronix", 40, false,true));
-           events.add(new Event("Croodle", 50, false,true));
-           events.add(new Event("MAD Talks", 60, false,true));
-           events.add(new Event("NTH", 70, false,true));
-           events.add(new Event("Paper\nPresentation", 80, false,true));
-           events.add(new Event("Pixelate", 90, false,true));
-           events.add(new Event("Roboliga", 100, false,true));
-           events.add(new Event("Reverse\nCoding", 120, false,true));
-           events.add(new Event("Quiz", 130, false,true));
-           events.add(new Event("Software\nDevelopment", 140, false,true));
-           events.add(new Event("Seminars", 150, false,true));
-           events.add(new Event("Web Weaver", 160, false,true));
-           events.add(new Event("Wall Street", 170, false,true));
-           events.add(new Event("Xodia", 180, false,true));
-           events.add(new Event("Workshop", 190, false,true));
+           events.add(new Event("B-Plan", price.get(0), false,true));
+           events.add(new Event("Contraption", price.get(1), false,true));
+           events.add(new Event("Clash", price.get(2), false,true));
+           events.add(new Event("Cretronix", price.get(3), false,true));
+           events.add(new Event("DataWiz", price.get(4), false,true));
+           events.add(new Event("Enigma",price.get(5),false,true));
+           events.add(new Event("NTH", price.get(6), false,true));
+           events.add(new Event("Paper\nPresentation", price.get(7), false,true));
+           events.add(new Event("Pixelate", price.get(8), false,true));
+           events.add(new Event("Roboliga", price.get(9), false,true));
+           events.add(new Event("Reverse\nCoding", price.get(10), false,true));
+           events.add(new Event("Quiz", price.get(11), false,true));
+           events.add(new Event("Software\nDevelopment", price.get(12), false,true));
+           events.add(new Event("Web Weaver", price.get(14), false,true));
+           events.add(new Event("Wall Street", price.get(15), false,true));
+           events.add(new Event("Xodia", price.get(16), false,true));
        }
         else if(bundle.getString("name3","NULL").isEmpty())
         {
-            events.add(new Event("B-Plan", 10, false,true));
-            events.add(new Event("Contraption", 20, false,true));
-            events.add(new Event("Clash", 30, false,true));
-            events.add(new Event("Cretronix", 40, false,true));
-            events.add(new Event("Croodle", 50, false,true));
-            events.add(new Event("MAD Talks", 60, false,true));
-            events.add(new Event("NTH", 70, false,false));
-            events.add(new Event("Paper\nPresentation", 80, false,true));
-            events.add(new Event("Pixelate", 90, false,true));
-            events.add(new Event("Roboliga", 100, false,true));
-            events.add(new Event("Reverse\nCoding", 120, false,true));
-            events.add(new Event("Quiz", 130, false,true));
-            events.add(new Event("Software\nDevelopment", 140, false,true));
-            events.add(new Event("Seminars", 150, false,false));
-            events.add(new Event("Web Weaver", 160, false,true));
-            events.add(new Event("Wall Street", 170, false,false));
-            events.add(new Event("Xodia", 180, false,false));
-            events.add(new Event("Workshop", 190, false,false));
-
+            events.add(new Event("B-Plan", price.get(0), false,true));
+            events.add(new Event("Contraption", price.get(1), false,true));
+            events.add(new Event("Clash", price.get(2), false,true));
+            events.add(new Event("Cretronix", price.get(3), false,true));
+            events.add(new Event("DataWiz", price.get(4), false,true));
+            events.add(new Event("Enigma",price.get(5),false,true));
+            events.add(new Event("NTH", price.get(6), false,false));
+            events.add(new Event("Paper\nPresentation", price.get(7), false,true));
+            events.add(new Event("Pixelate", price.get(8), false,true));
+            events.add(new Event("Roboliga", price.get(9), false,true));
+            events.add(new Event("Reverse\nCoding", price.get(10), false,true));
+            events.add(new Event("Quiz", price.get(11), false,true));
+            events.add(new Event("Software\nDevelopment", price.get(12), false,true));
+            events.add(new Event("Web Weaver", price.get(14), false,true));
+            events.add(new Event("Wall Street", price.get(15), false,false));
+            events.add(new Event("Xodia", price.get(16), false,false));
         }
         else if(bundle.getString("name4","NULL").isEmpty())
         {
-            events.add(new Event("B-Plan", 10, false,true));
-            events.add(new Event("Contraption", 20, false,true));
-            events.add(new Event("Clash", 30, false,false));
-            events.add(new Event("Cretronix", 40, false,true));
-            events.add(new Event("Croodle", 50, false,false));
-            events.add(new Event("MAD Talks", 60, false,true));
-            events.add(new Event("NTH", 70, false,false));
-            events.add(new Event("Paper\nPresentation", 80, false,true));
-            events.add(new Event("Pixelate", 90, false,false));
-            events.add(new Event("Roboliga", 100, false,true));
-            events.add(new Event("Reverse\nCoding", 120, false,false));
-            events.add(new Event("Quiz", 130, false,false));
-            events.add(new Event("Software\nDevelopment", 140, false,true));
-            events.add(new Event("Seminars", 150, false,false));
-            events.add(new Event("Web Weaver", 160, false,true));
-            events.add(new Event("Wall Street", 170, false,false));
-            events.add(new Event("Xodia", 180, false,false));
-            events.add(new Event("Workshop", 190, false,false));
+            events.add(new Event("B-Plan", price.get(0), false,true));
+            events.add(new Event("Contraption", price.get(1), false,true));
+            events.add(new Event("Clash", price.get(2), false,false));
+            events.add(new Event("Cretronix", price.get(3), false,true));
+            events.add(new Event("DataWiz", price.get(4), false,false));
+            events.add(new Event("Enigma",price.get(5),false,false));
+            events.add(new Event("NTH", price.get(6), false,false));
+            events.add(new Event("Paper\nPresentation", price.get(7), false,true));
+            events.add(new Event("Pixelate", price.get(8), false,false));
+            events.add(new Event("Roboliga", price.get(9), false,true));
+            events.add(new Event("Reverse\nCoding", price.get(10), false,false));
+            events.add(new Event("Quiz", price.get(11), false,false));
+            events.add(new Event("Software\nDevelopment", price.get(12), false,true));
+            events.add(new Event("Web Weaver", price.get(14), false,true));
+            events.add(new Event("Wall Street", price.get(15), false,false));
+            events.add(new Event("Xodia", price.get(16), false,false));
         }
         else
         {
-            events.add(new Event("B-Plan", 10, false,false));
-            events.add(new Event("Contraption", 20, false,true));
-            events.add(new Event("Clash", 30, false,false));
-            events.add(new Event("Cretronix", 40, false,true));
-            events.add(new Event("Croodle", 50, false,false));
-            events.add(new Event("MAD Talks", 60, false,false));
-            events.add(new Event("NTH", 70, false,false));
-            events.add(new Event("Paper\nPresentation", 80, false,false));
-            events.add(new Event("Pixelate", 90, false,false));
-            events.add(new Event("Roboliga", 100, false,false));
-            events.add(new Event("Reverse\nCoding", 120, false,false));
-            events.add(new Event("Quiz", 130, false,false));
-            events.add(new Event("Software\nDevelopment", 140, false,false));
-            events.add(new Event("Seminars", 150, false,false));
-            events.add(new Event("Web Weaver", 160, false,false));
-            events.add(new Event("Wall Street", 170, false,false));
-            events.add(new Event("Xodia", 180, false,false));
-            events.add(new Event("Workshop", 190, false,false));
+            events.add(new Event("B-Plan", price.get(0), false,false));
+            events.add(new Event("Contraption", price.get(1), false,true));
+            events.add(new Event("Clash", price.get(2), false,false));
+            events.add(new Event("Cretronix", price.get(3), false,true));
+            events.add(new Event("DataWiz", price.get(4), false,false));
+            events.add(new Event("Enigma",price.get(5),false,false));
+            events.add(new Event("NTH", price.get(6), false,false));
+            events.add(new Event("Paper\nPresentation", price.get(7), false,false));
+            events.add(new Event("Pixelate", price.get(8), false,false));
+            events.add(new Event("Roboliga", price.get(9), false,false));
+            events.add(new Event("Reverse\nCoding", price.get(10), false,false));
+            events.add(new Event("Quiz", price.get(11), false,false));
+            events.add(new Event("Software\nDevelopment", price.get(12), false,false));
+            events.add(new Event("Web Weaver", price.get(14), false,false));
+            events.add(new Event("Wall Street", price.get(15), false,false));
+            events.add(new Event("Xodia", price.get(16), false,false));
         }
         return events;
     }
@@ -282,8 +300,8 @@ public class Register extends AppCompatActivity{
                                                 serverData.Contraption,
                                                 serverData.Clash,
                                                 serverData.Cretronix,
-                                                serverData.Croodle,
-                                                serverData.MADTalks,
+                                                serverData.Datawiz,
+                                                serverData.Enigma,
                                                 serverData.NTH,
                                                 serverData.paperPresentation,
                                                 serverData.Pixelate,
@@ -291,11 +309,9 @@ public class Register extends AppCompatActivity{
                                                 serverData.Reverse_Coding,
                                                 serverData.Quiz,
                                                 serverData.Software_Development,
-                                                serverData.Seminars,
                                                 serverData.WebWeaver,
                                                 serverData.WallStreet,
-                                                serverData.Xodia,
-                                                serverData.Workshop);
+                                                serverData.Xodia);
 
 
         call.enqueue(new Callback<List<DataRecv>>() {
