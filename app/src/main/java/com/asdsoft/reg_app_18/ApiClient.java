@@ -23,7 +23,7 @@ public interface ApiClient {
                                 @Field("date") String date,
                                 @Field("total") int total,
                                 @Field("college") String college,
-                                @Field("ieee") Boolean ieee,
+                                @Field("ieee") int ieee,
                                 @Field("BPlan") int BPlan,
                                 @Field("Contraption") int Contraption,
                                 @Field("Clash") int Clash,
@@ -40,4 +40,8 @@ public interface ApiClient {
                                 @Field("WebWeaver") int WebWeaver,
                                 @Field("WallStreet") int WallStreet,
                                 @Field("Xodia") int Xodia);
+
+    @FormUrlEncoded
+    @POST("check.php")
+    Call<List<DataRecv>> checkData(@Field("phone")String phone);
 }

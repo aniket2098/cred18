@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.asdsoft.reg_app_18">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,34 +14,43 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".dummy" />
-        <activity android:name=".Register"
+        <activity
+            android:name=".Register"
             android:noHistory="true"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".QRCode"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".QRCode"
             android:noHistory="true"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Prev"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Details"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Prev"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Details"
             android:noHistory="true"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Bug"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Bug"
             android:noHistory="true"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LoginAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginAct"
             android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VerifyPhoneActivity"
+        <activity
+            android:name=".VerifyPhoneActivity"
             android:noHistory="true"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".Wait"></activity>
     </application>
 
 </manifest>
