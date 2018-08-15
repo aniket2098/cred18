@@ -10,7 +10,7 @@ public interface ApiClient {
     public static final String BASE_URL = "http://webone.tk/regapp/";
 
     @FormUrlEncoded
-    @POST("test.php")
+    @POST("restapi.php")
     Call<List<DataRecv>> sendData(
                                 @Field("name1") String name,
                                 @Field("name2") String name2,
