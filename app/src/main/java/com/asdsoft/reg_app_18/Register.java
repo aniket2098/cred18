@@ -52,6 +52,7 @@ public class Register extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         progressBar = findViewById(R.id.progressbar);
+
         class RegisterAdapter extends
                 RecyclerView.Adapter<RegisterAdapter.ViewHolder> {
 
@@ -206,9 +207,6 @@ register.setEnabled(false);
             price.add(0);
         }
 
-
-
-
         events.clear();
         Log.i("bool11", Boolean.toString(bundle.getString("name2","NULL").isEmpty()));
        if(bundle.getString("name2","NULL").isEmpty()) {
@@ -311,7 +309,7 @@ register.setEnabled(false);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         ApiClient api = retrofit.create(ApiClient.class);
         String gname = "test";
-        Call<List<DataRecv>> call = api.sendData(firebaseUser.getPhoneNumber(),
+        Call<List<DataRecv>> call = api.sendData("7588245434",
                                                 gname,
                                                 serverData.name,
                                                 serverData.name2,
