@@ -49,6 +49,7 @@ public class Prev extends AppCompatActivity {
             }
             cursor.close();
 
+
             RegAdapter adapter = new RegAdapter(registrations,Prev.this);
             rv.setAdapter(adapter);
             rv.setLayoutManager(new LinearLayoutManager(Prev.this));
