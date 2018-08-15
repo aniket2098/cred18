@@ -126,13 +126,13 @@ public class Register extends AppCompatActivity{
         rvContacts.setAdapter(adapter);
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
 
-        Button register = findViewById(R.id.registerButton);
+        final Button register = findViewById(R.id.registerButton);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
+                register.setEnabled(false);
                 database();
                 Intent intent = new Intent(Register.this, QRCode.class);
                 startActivity(intent);
