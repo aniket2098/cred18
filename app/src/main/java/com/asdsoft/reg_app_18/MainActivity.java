@@ -101,6 +101,7 @@ public class    MainActivity extends AppCompatActivity
                             intent.putExtra("phone",contestantPhone);
                             intent.putExtra("college",contestantCollege);
                             startActivity(intent);
+                            finish();
                         }
                         else
                             Toast.makeText(MainActivity.this, "Invalid Phone no.!", Toast.LENGTH_SHORT).show();
