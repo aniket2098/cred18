@@ -114,20 +114,25 @@ public class    MainActivity extends AppCompatActivity
                                         contestantPhone.charAt(0)=='8' ||
                                         contestantPhone.charAt(0)=='9'))         //SEND INFORMATION TO SERVER AFTER THIS
                         {
-                            SharedPreferences.Editor editor = getSharedPreferences("cllgName", MODE_PRIVATE).edit();
-                            editor.putInt("cllgName", spinner.getSelectedItemPosition());
-                            editor.apply();
-                            Intent intent = new Intent(MainActivity.this, Register.class);
-                            intent.putExtra("name",contestantName);
-                            intent.putExtra("name2",contestantName2);
-                            intent.putExtra("name3",contestantName3);
-                            intent.putExtra("name4",contestantName4);
-                            intent.putExtra("email",contestantEmail);
-                            intent.putExtra("phone",contestantPhone);
-                            intent.putExtra("college",contestantCollege);
-                            intent.putExtra("ieee",ieeeMember);
-                            startActivity(intent);
-                            finish();
+                            if(!contestantCollege.equals("Select Visiting College")&&!contestantCollege.isEmpty())
+                            {
+                                SharedPreferences.Editor editor = getSharedPreferences("cllgName", MODE_PRIVATE).edit();
+                                editor.putInt("cllgName", spinner.getSelectedItemPosition());
+                                editor.apply();
+                                Intent intent = new Intent(MainActivity.this, Register.class);
+                                intent.putExtra("name",contestantName);
+                                intent.putExtra("name2",contestantName2);
+                                intent.putExtra("name3",contestantName3);
+                                intent.putExtra("name4",contestantName4);
+                                intent.putExtra("email",contestantEmail);
+                                intent.putExtra("phone",contestantPhone);
+                                intent.putExtra("college",contestantCollege);
+                                intent.putExtra("ieee",ieeeMember);
+                                startActivity(intent);
+                                finish();
+                            }
+                            else
+                                Toast.makeText(MainActivity.this, "Invalid College Name!", Toast.LENGTH_SHORT).show();
                         }
                         else
                             Toast.makeText(MainActivity.this, "Invalid Phone no.!", Toast.LENGTH_SHORT).show();

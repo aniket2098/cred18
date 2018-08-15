@@ -52,6 +52,7 @@ public class Register extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         progressBar = findViewById(R.id.progressbar);
+
         class RegisterAdapter extends
                 RecyclerView.Adapter<RegisterAdapter.ViewHolder> {
 
@@ -205,9 +206,6 @@ register.setEnabled(false);
             price.add(0);
             price.add(0);
         }
-
-
-
 
         events.clear();
         Log.i("bool11", Boolean.toString(bundle.getString("name2","NULL").isEmpty()));
