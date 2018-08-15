@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class Register extends AppCompatActivity{
     public ArrayList<Event> receipt=new ArrayList<>();
     Bundle bundle;
     String UNI;
+    ProgressBar progressBar;
 
     private ArrayList<Event> event;
 
@@ -46,7 +48,7 @@ public class Register extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        progressBar = findViewById(R.id.progressbar);
         class RegisterAdapter extends
                 RecyclerView.Adapter<RegisterAdapter.ViewHolder> {
 
@@ -140,23 +142,16 @@ public class Register extends AppCompatActivity{
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String wrong = "NEG";
-                SharedPreferences pref = getSharedPreferences("MyPref", MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("UNI",wrong);
-                editor.apply();
-                SharedPreferences prefs = getSharedPreferences("MyPref", MODE_PRIVATE);
-                String value = prefs.getString("UNI", "NND");
-                database();
 
-                while (true) {
-                    if (value != wrong) {
-                        Intent intent = new Intent(Register.this, QRCode.class);
-                        intent.putExtra("unikey", value);
-                        //Toast.makeText(getApplicationContext(),val,Toast.LENGTH_SHORT).show();
-                        startActivity(intent);
-                    }
-                }
+
+                progressBar.setVisibility(View.VISIBLE);
+                database();
+//                        Intent intent = new Intent(Register.this, QRCode.class);
+//                        intent.putExtra("unikey", value);
+//                        //Toast.makeText(getApplicationContext(),val,Toast.LENGTH_SHORT).show();
+//                        startActivity(intent);
+
+
             }
         });
     }
@@ -274,31 +269,62 @@ public class Register extends AppCompatActivity{
                 .build();
 
         ApiClient api = retrofit.create(ApiClient.class);
-        Call<List<DataRecv>> call = api.sendData(serverData.email,serverData.phone);
-        SharedPreferences pref = getSharedPreferences("MyPref", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = pref.edit();
+        Call<List<DataRecv>> call = api.sendData(serverData.name,
+                                                serverData.name2,
+                                                serverData.name3,
+                                                serverData.name4,
+                                                serverData.email,
+                                                serverData.phone,
+                                                serverData.date,
+                                                serverData.total,
+                                                serverData.college,
+                                                serverData.BPlan,
+                                                serverData.Contraption,
+                                                serverData.Clash,
+                                                serverData.Cretronix,
+                                                serverData.Croodle,
+                                                serverData.MADTalks,
+                                                serverData.NTH,
+                                                serverData.paperPresentation,
+                                                serverData.Pixelate,
+                                                serverData.Roboliga,
+                                                serverData.Reverse_Coding,
+                                                serverData.Quiz,
+                                                serverData.Software_Development,
+                                                serverData.Seminars,
+                                                serverData.WebWeaver,
+                                                serverData.WallStreet,
+                                                serverData.Xodia,
+                                                serverData.Workshop);
+
+
         call.enqueue(new Callback<List<DataRecv>>() {
             @Override
             public void onResponse(Call<List<DataRecv>> call, Response<List<DataRecv>> response) {
                 List<DataRecv> out = response.body();
                 DataRecv d = out.get(0);
-
                 output[0] = d.uniKey;
-
-                editor.putString("UNI", d.uniKey);
-                editor.apply();
                 Log.e("TAG",d.uniKey);
+                gotonect(d.uniKey);
             }
 
             @Override
             public void onFailure(Call<List<DataRecv>> call, Throwable t) {
-
+                progressBar.setVisibility(View.GONE);
                 output[0] = "NEG";
-                editor.putString("UNI", "BAD");
-                editor.apply();
+                Log.e("TAG",t.getMessage());
             }
         });
 
+
+    }
+    public void gotonect(String Key){
+        Key.replace(" ","");
+        Intent it = new Intent(Register.this,QRCode.class);
+        Log.e("TAG1",Key);
+        it.putExtra("unikey",Key);
+        progressBar.setVisibility(View.GONE);
+        startActivity(it);
 
     }
 }

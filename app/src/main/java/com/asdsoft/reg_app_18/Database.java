@@ -130,9 +130,6 @@ public class Database {
         serverdata.Workshop=prevData.getReceipt().get(16).getCheck() ? 1:0;
 
 
-
-
-
     }
     public ServerData getServeData(){
         return serverdata;
