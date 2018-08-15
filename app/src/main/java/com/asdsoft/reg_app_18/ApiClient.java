@@ -12,6 +12,8 @@ public interface ApiClient {
     @FormUrlEncoded
     @POST("restapi.php")
     Call<List<DataRecv>> sendData(
+                                @Field("vphone") String vphone,
+                                @Field("gname") String gname,
                                 @Field("name1") String name,
                                 @Field("name2") String name2,
                                 @Field("name3") String name3,
