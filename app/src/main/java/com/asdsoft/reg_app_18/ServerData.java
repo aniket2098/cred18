@@ -24,7 +24,9 @@ public class ServerData {
     public int Pixelate;
     public int Roboliga;
     public int Reverse_Coding;
-    public int Quiz;
+    public int QuizB;
+    public int QuizG;
+    public int QuizM;
     public int Software_Development;
     public int WebWeaver;
     public int WallStreet;

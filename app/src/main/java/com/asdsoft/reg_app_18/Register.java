@@ -179,7 +179,7 @@ register.setEnabled(false);
             price.add(150);
             price.add(200);
             price.add(100);
-            price.add(40);
+            price.add(50);
             price.add(200);
             price.add(0);
             price.add(150);
@@ -223,7 +223,9 @@ register.setEnabled(false);
            events.add(new Event("Pixelate", price.get(8), false,true));
            events.add(new Event("Roboliga", price.get(9), false,true));
            events.add(new Event("Reverse\nCoding", price.get(10), false,true));
-           events.add(new Event("Quiz", price.get(11), false,true));
+           events.add(new Event("Quiz(BizTech)", price.get(11), false,true));
+           events.add(new Event("Quiz(General)", price.get(11), false,true));
+           events.add(new Event("Quiz(MELA)", price.get(11), false,true));
            events.add(new Event("Software\nDevelopment", price.get(12), false,true));
            events.add(new Event("Web Weaver", price.get(14), false,true));
            events.add(new Event("Wall Street", price.get(15), false,true));
@@ -242,8 +244,9 @@ register.setEnabled(false);
             events.add(new Event("Pixelate", price.get(8), false,true));
             events.add(new Event("Roboliga", price.get(9), false,true));
             events.add(new Event("Reverse\nCoding", price.get(10), false,true));
-            events.add(new Event("Quiz", price.get(11), false,true));
-            events.add(new Event("Software\nDevelopment", price.get(12), false,true));
+            events.add(new Event("Quiz(BizTech)", price.get(11), false,true));
+            events.add(new Event("Quiz(General)", price.get(11), false,true));
+            events.add(new Event("Quiz(MELA)", price.get(11), false,true));            events.add(new Event("Software\nDevelopment", price.get(12), false,true));
             events.add(new Event("Web Weaver", price.get(14), false,true));
             events.add(new Event("Wall Street", price.get(15), false,false));
             events.add(new Event("Xodia", price.get(16), false,false));
@@ -261,8 +264,9 @@ register.setEnabled(false);
             events.add(new Event("Pixelate", price.get(8), false,false));
             events.add(new Event("Roboliga", price.get(9), false,true));
             events.add(new Event("Reverse\nCoding", price.get(10), false,false));
-            events.add(new Event("Quiz", price.get(11), false,false));
-            events.add(new Event("Software\nDevelopment", price.get(12), false,true));
+            events.add(new Event("Quiz(BizTech)", price.get(11), false,true));
+            events.add(new Event("Quiz(General)", price.get(11), false,true));
+            events.add(new Event("Quiz(MELA)", price.get(11), false,true));            events.add(new Event("Software\nDevelopment", price.get(12), false,true));
             events.add(new Event("Web Weaver", price.get(14), false,true));
             events.add(new Event("Wall Street", price.get(15), false,false));
             events.add(new Event("Xodia", price.get(16), false,false));
@@ -280,8 +284,9 @@ register.setEnabled(false);
             events.add(new Event("Pixelate", price.get(8), false,false));
             events.add(new Event("Roboliga", price.get(9), false,false));
             events.add(new Event("Reverse\nCoding", price.get(10), false,false));
-            events.add(new Event("Quiz", price.get(11), false,false));
-            events.add(new Event("Software\nDevelopment", price.get(12), false,false));
+            events.add(new Event("Quiz(BizTech)", price.get(11), false,true));
+            events.add(new Event("Quiz(General)", price.get(11), false,true));
+            events.add(new Event("Quiz(MELA)", price.get(11), false,true));            events.add(new Event("Software\nDevelopment", price.get(12), false,false));
             events.add(new Event("Web Weaver", price.get(14), false,false));
             events.add(new Event("Wall Street", price.get(15), false,false));
             events.add(new Event("Xodia", price.get(16), false,false));
@@ -300,7 +305,13 @@ register.setEnabled(false);
         makeRequest(database.getServeData());
     }
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
+        if(!(findViewById(R.id.register)).isEnabled())
+        {
+            Intent intent = new Intent(Register.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
     public void makeRequest(ServerData serverData){
         final String[] output = new String[1];
@@ -334,7 +345,9 @@ register.setEnabled(false);
                                                 serverData.Pixelate,
                                                 serverData.Roboliga,
                                                 serverData.Reverse_Coding,
-                                                serverData.Quiz,
+                                                serverData.QuizB,
+                                                serverData.QuizG,
+                                                serverData.QuizM,
                                                 serverData.Software_Development,
                                                 serverData.WebWeaver,
                                                 serverData.WallStreet,
