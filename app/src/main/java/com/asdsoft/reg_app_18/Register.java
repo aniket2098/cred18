@@ -307,7 +307,8 @@ register.setEnabled(false);
     @Override
     public void onBackPressed()
     {
-        if(!(findViewById(R.id.register)).isEnabled())
+        Button button=(findViewById(R.id.registerButton));
+        if((button.isEnabled()))
         {
             Intent intent = new Intent(Register.this, MainActivity.class);
             startActivity(intent);

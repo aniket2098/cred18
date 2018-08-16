@@ -50,7 +50,9 @@
             android:name=".VerifyPhoneActivity"
             android:noHistory="true"
             android:screenOrientation="portrait" />
-        <activity android:name=".Wait"></activity>
+        <activity android:name=".Wait"
+            android:noHistory="true"
+            ></activity>
     </application>
 
 </manifest>
