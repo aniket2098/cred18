@@ -3,14 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_top">
+        <item
+            android:id="@+id/id_addreceipt"
+            android:icon="@drawable/icon_qrcode"
+            android:title="Add Receipts" />
         <item
             android:id="@+id/register"
-            android:icon="@android:drawable/ic_menu_recent_history"
-            android:title="Previous Registrations" />
+            android:icon="@drawable/icon_my_receipts"
+            android:title="My Receipts" />
+        <item
+            android:id="@+id/ping"
+            android:icon="@drawable/icon_ping"
+            android:title="P.I.N.G." />
+        <item
+            android:id="@+id/aboutus"
+            android:icon="@drawable/icon_aboutus"
+            android:title="About Us"/>
+    </group>
+
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_bottom">
+        <item
+            android:id="@+id/contactus"
+            android:icon="@drawable/icon_contact"
+            android:title="Contact us"/>
+        <item
+            android:id="@+id/rate"
+            android:icon="@drawable/icon_star"
+            android:title="Rate us" />
+        <item
+            android:id="@+id/share"
+            android:icon="@drawable/icon_share"
+            android:title="Share" />
         <item
             android:id="@+id/bug"
             android:icon="@android:drawable/stat_notify_error"
             android:title="Report a Bug" />
     </group>
+
+
+
 </menu>

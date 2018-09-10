@@ -1,58 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.asdsoft.reg_app_18">
+    package="com.pisb.credenz18">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.pisb.credenz18.SplashScreen"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".dummy" />
-        <activity
-            android:name=".Register"
-            android:noHistory="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".QRCode"
-            android:noHistory="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Prev"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Details"
-            android:noHistory="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Bug"
-            android:noHistory="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".LoginAct"
-            android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.pisb.credenz18.MainActivity"
+            android:noHistory="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.pisb.credenz18.dummy" />
         <activity
-            android:name=".VerifyPhoneActivity"
+            android:name="com.pisb.credenz18.AddReceipt"
             android:noHistory="true"
             android:screenOrientation="portrait" />
-        <activity android:name=".Wait"
+        <activity
+            android:name="com.pisb.credenz18.Prev"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.pisb.credenz18.Details"
             android:noHistory="true"
-            ></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.pisb.credenz18.Bug"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.pisb.credenz18.AddManually"
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.pisb.credenz18.EventInfo"
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.pisb.credenz18.ClashInfo"
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.pisb.credenz18.Ping"
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.pisb.credenz18.AboutUs"
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.pisb.credenz18.ContactUs"
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
